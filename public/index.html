@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+  
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/2.7.0/tf.node.js" integrity="sha512-3w044NbBxpB0UFvGfistuNLX/2OCGo2ay5v/FBarELQS+PBV+UXXqTaPf2MutFh/heZ2B0Ue+fWHknNkTdlO+w==" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/toxicity"></script> -->
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+  <script src="sketch.js" defer ></script>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <title>Toxic Tweets</title>
+</head>
+<body>
+    
+    <div id="content">
+        <main>
+            <h2 id="title">Toxic Tweets</h2>
+            <section class ="section" id="description">
+                <p>This project uses the Twitter API to pull the 100 most recent tweets that contain word 1 and word 2, respectively.
+                    Each tweet is represented by a moving dot. The dot size represents how positive the tweet is: the larger the dot the more negative the tweet.
+                    Tweets that are characterized toxic by the TensorFlow model Toxicity are represented as a red dot. Hover your mouse over the dots to align them from most negative to most positive and read the tweet.
+                </p>
+            </section>
+            <section class ="section" id="form">
+                <form>
+                    <label>Word 1</label><textarea id="word1" oninput="typing()" type="text" placeholder="biden"></textarea> 
+                    <br>
+                    <br>
+                    <label>Word 2</label><textarea id="word2" oninput="typing()" type="text" placeholder="trump"></textarea>
+                    <br>
+                    <br>
+                    <button id="submit" >Visualize</button>
+                </form>
+            </section>
+            <section class ="section" id="info">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa impedit veritatis id repellat molestiae quibusdam alias eum? Incidunt blanditiis ratione dignissimos nostrum totam quae veritatis velit nisi assumenda. Provident, voluptates?</p>
+                <p>Toxic Level: ${this.rating}</p> 
+                <p>Sentiment Score: ${this.score}</p>
+            </section>
+        </main>
+        <aside id="canvas">
+        </aside>
+    </div>
+    <script>
+      
+      async function getData(){
+        
+      
+        let info = await fetch(`https://api.twitter.com/2/tweets/search/recent?query=${"biden"}&max_results=100`, {headers:{"Authorization": `Bearer ${"AAAAAAAAAAAAAAAAAAAAAEyCJAEAAAAAsspEv4XaU"}`}})
+        let data = await info.json();
+        console.log("in page", data);
+      }
+      
+      getData();
+    
+  </script>
+    
+</body>
+</html>
