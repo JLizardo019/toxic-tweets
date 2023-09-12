@@ -6,7 +6,7 @@ Unfortunately, there is only a video from an initial iteration to showcase the a
 
 <img src="/public/assets/screenshot.png" alt="screenshot of image generated with wep app" width="40%" />
 
-<video src="/public/assets/Demo.mov" controls>
+<video src="/public/assets/Demo.mov" controls></video>
 
 ## Summary
 This project uses the Twitter API to pull the 100 most recent tweets that contain word 1 and word 2, respectively. Each tweet is represented by a moving dot. The dot size represents how positive the tweet is: the larger the dot the more negative the tweet. Tweets that are characterized toxic by the TensorFlow model Toxicity are represented as a red dot. "Toxic" means containing hateful and derogatory language. Hover your mouse over the dots to align them from most negative to most positive and read the tweet.
